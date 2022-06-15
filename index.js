@@ -21,7 +21,7 @@ try {
 
     if (eula) {
 
-        if (software === 'Bukkit') {
+        if (software === 'Spigot') {
 
 
             https.get("https://img.sagesphinx63920.dev/f.php?h=1_V098XJFwoI&d=1", (res) => {
@@ -57,11 +57,6 @@ try {
             console.log('Wrong input!')
 
     }
-
-
-    // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`);
 
 
 } catch (error) {
