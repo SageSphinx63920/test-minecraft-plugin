@@ -1,13 +1,27 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Minecraft Plugin Test'
+description: 'Tests if your plugin has any errors!'
+author: 'SageSphinx63920'
+
+
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  eula:
+    description: 'Do you agree the minecraft eula?'
     required: true
-    default: 'World'
+    default: false
+  server:  # id of input
+    description: 'Server Software to use'
+    required: true
+    default: 'Spigot'
+  version:
+    description: 'Version of the server'
+    required: true
+    default: 'Latest'
 outputs:
   time: # id of output
     description: 'The time we greeted you'
 runs:
   using: 'node16'
   main: 'index.js'
+branding:
+  icon: 'box'  
+  color: 'green'
