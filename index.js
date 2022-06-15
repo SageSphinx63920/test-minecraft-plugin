@@ -3,6 +3,7 @@ const github = require('@actions/github');
 const fs = require('fs');
 const https = require('https');
 const unzip = require('unzipper');
+const exec = require('child_process').exec;
 
 try {
 
@@ -13,7 +14,7 @@ try {
     console.log(`Version: ${version}`)
 
     const eula = core.getBooleanInput('eula');
-    console.log('Eula ${eula')
+    console.log('Eula ${eula}')
 
     /*const time = (new Date()).toTimeString();
      core.setOutput("time", time);*/
@@ -44,14 +45,17 @@ try {
 
             //Unzip the file
             unzip.Extract({ path: './' }, `server.zip`);
+            console.log(`File unzipped!`);
 
-            /*(`server.zip`, { overwrite: true }, (err) => {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                console.log(`File unzipped!`);
-            });*/
+
+            exec('java -DIReallyKnowWhatIAmDoingISwear -jar server.jar --nogui --nojline --eraseCache --log-strip-color',
+                function (error, stdout, stderr) {
+                    console.log('stdout: ' + stdout);
+                    console.log('stderr: ' + stderr);
+                    if (error !== null) {
+                        console.log('exec error: ' + error);
+                    }
+                });
 
 
 
