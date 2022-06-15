@@ -8,13 +8,13 @@ const exec = require('child_process').exec;
 //try {
 
     const software = "Spigot"; //core.getInput('server');
-    console.log(`Server: ${software}!`);
+    console.log(`Server: ${software}`);
 
     const version = "Latest"; //core.getInput('version');
-    console.log(`Version: ${version}`)
+    console.log(`Version: ${version}`);
 
     const eula = true; //core.getBooleanInput('eula');
-    console.log('Eula ${eula}')
+    console.log(`Eula: ${eula}`);
 
     /*const time = (new Date()).toTimeString();
      core.setOutput("time", time);*/
@@ -41,7 +41,7 @@ const exec = require('child_process').exec;
                     console.log(`File downloaded!`);
 
                     //Unzip the file
-                    unzip.Extract({ path: './' }, `server.zip`);
+                    unzip.Extract({ path: 'server' }, `server.zip`);
                     console.log(`File unzipped!`);
 
 
