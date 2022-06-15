@@ -43,7 +43,7 @@ try {
             });
 
             //Unzip the file
-            unzip(`server.zip`, { overwrite: true }, (err) => {
+            unzip.Extract(`server.zip`, { overwrite: true }, (err) => {
                 if (err) {
                     console.error(err);
                     return;
