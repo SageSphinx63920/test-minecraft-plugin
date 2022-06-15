@@ -5,15 +5,15 @@ const https = require('https');
 const unzip = require('unzipper');
 const exec = require('child_process').exec;
 
-try {
+//try {
 
-    const software = core.getInput('server');
+    const software = "Spigot"; //core.getInput('server');
     console.log(`Server: ${software}!`);
 
-    const version = core.getInput('version');
+    const version = "Latest"; //core.getInput('version');
     console.log(`Version: ${version}`)
 
-    const eula = core.getBooleanInput('eula');
+    const eula = true; //core.getBooleanInput('eula');
     console.log('Eula ${eula}')
 
     /*const time = (new Date()).toTimeString();
@@ -33,37 +33,42 @@ try {
                 // Write data into local file
                 res.pipe(file);
 
+                console.log("Downloading the server... This may take a while...");
+
                 // Close the file
                 file.on('finish', () => {
                     file.close();
                     console.log(`File downloaded!`);
+
+                    //Unzip the file
+                    unzip.Extract({ path: './' }, `server.zip`);
+                    console.log(`File unzipped!`);
+
+
+                    exec(`ls`, (err, stdout, stderr) => {
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
+                        console.log(stdout);
+                    });
+
+                    exec('java -DIReallyKnowWhatIAmDoingISwear -jar server.jar --nogui --nojline --eraseCache --log-strip-color',
+                        function (error, stdout, stderr) {
+                            console.log('stdout: ' + stdout);
+                            console.log('stderr: ' + stderr);
+                            if (error !== null) {
+                                console.log('exec error: ' + error);
+                            }
+                        });
                 });
+
 
             }).on("error", (err) => {
                 console.log("Error: ", err.message);
             });
 
-            //Unzip the file
-            unzip.Extract({ path: './' }, `server.zip`);
-            console.log(`File unzipped!`);
 
-
-            exec(`ls`, (err, stdout, stderr) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                console.log(stdout);
-            });
-
-            exec('java -DIReallyKnowWhatIAmDoingISwear -jar server.jar --nogui --nojline --eraseCache --log-strip-color',
-                function (error, stdout, stderr) {
-                    console.log('stdout: ' + stdout);
-                    console.log('stderr: ' + stderr);
-                    if (error !== null) {
-                        console.log('exec error: ' + error);
-                    }
-                });
 
 
 
@@ -73,7 +78,7 @@ try {
     }
 
 
-} catch (error) {
+/*} catch (error) {
     core.setFailed(error.message);
-}
+}*/
 
