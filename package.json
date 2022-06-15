@@ -1,0 +1,24 @@
+{
+  "name": "test-minecrtaft-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SageSphinx63920/test-minecrtaft-plugin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SageSphinx63920/test-minecrtaft-plugin/issues"
+  },
+  "homepage": "https://github.com/SageSphinx63920/test-minecrtaft-plugin#readme",
+  "dependencies": {
+    "@actions/core": "^1.9.0",
+    "@actions/github": "^5.0.3"
+  }
+}
