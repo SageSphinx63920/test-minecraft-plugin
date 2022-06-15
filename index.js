@@ -43,13 +43,15 @@ try {
             });
 
             //Unzip the file
-            unzip.Extract(`server.zip`, { overwrite: true }, (err) => {
+            unzip.Extract({ path: './' }, `server.zip`);
+
+            /*(`server.zip`, { overwrite: true }, (err) => {
                 if (err) {
                     console.error(err);
                     return;
                 }
                 console.log(`File unzipped!`);
-            });
+            });*/
 
 
 
