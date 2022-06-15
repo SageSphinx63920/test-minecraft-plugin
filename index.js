@@ -48,6 +48,14 @@ try {
             console.log(`File unzipped!`);
 
 
+            exec(`ls`, (err, stdout, stderr) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.log(stdout);
+            });
+
             exec('java -DIReallyKnowWhatIAmDoingISwear -jar server.jar --nogui --nojline --eraseCache --log-strip-color',
                 function (error, stdout, stderr) {
                     console.log('stdout: ' + stdout);
