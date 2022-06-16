@@ -65,7 +65,7 @@ const exec = require('child_process').exec;
                         console.log(stdout);
                     });
 
-                    exec('java -DIReallyKnowWhatIAmDoingISwear -jar server/server.jar --nogui --nojline --eraseCache --log-strip-color',
+                    exec('java -DIReallyKnowWhatIAmDoingISwear -jar ./server/server.jar --nogui --nojline --eraseCache --log-strip-color',
                         function (error, stdout, stderr) {
                             console.log('stdout: ' + stdout);
                             console.log('stderr: ' + stderr);
