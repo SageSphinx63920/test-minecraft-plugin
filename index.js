@@ -49,30 +49,40 @@ const exec = require('child_process').exec;
                     });
 
                     unzip.extract("server.zip", "server").then(function () {
-                        console.log("done");
+
+                        console.log(`File unzipped!`);
+
+                        exec('cd server',
+                            function (error, stdout, stderr) {
+                                console.log('stdout: ' + stdout);
+                                console.log('stderr: ' + stderr);
+                                if (error !== null) {
+                                    console.log('exec error: ' + error);
+                                }else{
+                                    exec('java -DIReallyKnowWhatIAmDoingISwear -jar server.jar --nogui --nojline --eraseCache --log-strip-color',
+                                        function (error, stdout, stderr) {
+                                            console.log('stdout: ' + stdout);
+                                            console.log('stderr: ' + stderr);
+                                            if (error !== null) {
+                                                console.log('exec error: ' + error);
+                                            }
+                                        });
+                                }
+
+
+                            });
                     }, function (err) {
                         console.log(err);
                     });
 
-                    console.log(`File unzipped!`);
+                });
 
-
-                    exec(`ls`, (err, stdout, stderr) => {
-                        if (err) {
-                            console.log(err);
-                            return;
-                        }
-                        console.log(stdout);
-                    });
-
-                    exec('java -DIReallyKnowWhatIAmDoingISwear -jar ./server/server.jar --nogui --nojline --eraseCache --log-strip-color',
-                        function (error, stdout, stderr) {
-                            console.log('stdout: ' + stdout);
-                            console.log('stderr: ' + stderr);
-                            if (error !== null) {
-                                console.log('exec error: ' + error);
-                            }
-                        });
+                exec(`ls`, (err, stdout, stderr) => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+                    console.log(stdout);
                 });
 
 
