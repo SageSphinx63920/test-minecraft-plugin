@@ -20,6 +20,6 @@
   "dependencies": {
     "@actions/core": "^1.9.0",
     "@actions/github": "^5.0.3",
-    "unzipper": "^0.10.11"
+    "zip-lib": "^0.7.3"
   }
 }

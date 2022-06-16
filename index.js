@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
 const https = require('https');
-const unzip = require('unzipper');
+const zl = require("zip-lib");
 const exec = require('child_process').exec;
 
 //try {
@@ -40,8 +40,20 @@ const exec = require('child_process').exec;
                     file.close();
                     console.log(`File downloaded!`);
 
-                    //Unzip the file
-                    unzip.Extract({ path: 'server' }, `server.zip`);
+                    //Unzip the contents of the zip folder with zlib
+                    const unzip = new zl.Unzip({
+                        // Called before an item is extracted.
+                        onEntry: function (event) {
+                            console.log(event.entryCount, event.entryName);
+                        }
+                    });
+
+                    unzip.extract("server.zip", "server").then(function () {
+                        console.log("done");
+                    }, function (err) {
+                        console.log(err);
+                    });
+
                     console.log(`File unzipped!`);
 
 
@@ -53,7 +65,7 @@ const exec = require('child_process').exec;
                         console.log(stdout);
                     });
 
-                    exec('java -DIReallyKnowWhatIAmDoingISwear -jar server.jar --nogui --nojline --eraseCache --log-strip-color',
+                    exec('java -DIReallyKnowWhatIAmDoingISwear -jar server/server.jar --nogui --nojline --eraseCache --log-strip-color',
                         function (error, stdout, stderr) {
                             console.log('stdout: ' + stdout);
                             console.log('stderr: ' + stderr);
