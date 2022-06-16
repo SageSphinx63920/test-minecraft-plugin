@@ -67,7 +67,7 @@ if (eula) {
 
                                 let path = "server/";
 
-                                exec(`java -DIReallyKnowWhatIAmDoingISwear -Dcom.mojang.eula.agree=true -jar server.jar --nogui --nojline --eraseCache -P ${path}plugins -S ${path}spigot.yml -b ${path}bukkit.yml -c ${path}server.properties -W ${path} -C ${path}commands.yml`,
+                                exec(`java -DIReallyKnowWhatIAmDoingISwear -Dcom.mojang.eula.agree=true -jar server/server.jar --nogui --nojline --eraseCache -P ${path}plugins -S ${path}spigot.yml -b ${path}bukkit.yml -c ${path}server.properties -W ${path} -C ${path}commands.yml`,
                                     function (error, stdout, stderr) {
                                         console.log('stdout: ' + stdout);
                                         console.log('stderr: ' + stderr);
